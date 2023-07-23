@@ -13,6 +13,33 @@
         android:theme="@style/Theme.GeoExplorers"
         tools:targetApi="31">
         <activity
+            android:name=".AddDestinations"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ViewGroupRoadMap"
+            android:exported="false" />
+        <activity
+            android:name=".ViewSoloRoadMap"
+            android:exported="false" />
+        <activity
+            android:name=".CreateGroupRoadMap"
+            android:exported="false" />
+        <activity
+            android:name=".CreateSoloRoadMap"
+            android:exported="false" />
+        <activity
+            android:name=".TripPlanner"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleSignIn"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
