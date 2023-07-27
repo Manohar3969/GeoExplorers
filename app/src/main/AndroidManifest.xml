@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GeoExplorers"
         tools:targetApi="31">
         <activity
+            android:name=".ViewGroupRoadMapDetailed"
+            android:exported="false" />
+        <activity
             android:name=".ViewSoloRoadMapDetailed"
             android:exported="false" />
         <activity

@@ -1,6 +1,7 @@
 package com.manohar3969.geoexplorers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,13 @@ public class AdapterGroupTripRoadMapList extends RecyclerView.Adapter<GroupTripV
 
     @Override
     public void onBindViewHolder(@NonNull GroupTripViewHolder holder, int position) {
-        String RoadMapID = groupTripRoadMapList.get(position).getEndDest();
+        String tripStartDate = groupTripRoadMapList.get(position).getStartDate();
+        String tripEndDate = groupTripRoadMapList.get(position).getEndDate();
+        String tripStartDest = groupTripRoadMapList.get(position).getStartDest();
+        String tripEndDest = groupTripRoadMapList.get(position).getEndDest();
+        String tripRoadMapID = groupTripRoadMapList.get(position).getRoadMapID();
+        String tripTotalTravellers = groupTripRoadMapList.get(position).getTotalTravellers();
+
         holder.textViewSoloTripStartDate.setText(groupTripRoadMapList.get(position).getStartDate());
         holder.textViewSoloTripStartDest.setText(groupTripRoadMapList.get(position).getStartDest());
         holder.textViewSoloTripEndDest.setText(groupTripRoadMapList.get(position).getEndDest());
@@ -44,7 +51,15 @@ public class AdapterGroupTripRoadMapList extends RecyclerView.Adapter<GroupTripV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"RoadMapID = "+RoadMapID,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context,ViewSoloRoadMapDetailed.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("TripStartDate",tripStartDate);
+                intent.putExtra("TripEndDate",tripEndDate);
+                intent.putExtra("TripStartDest",tripStartDest);
+                intent.putExtra("TripEndDest",tripEndDest);
+                intent.putExtra("TripRoadMapID",tripRoadMapID);
+                intent.putExtra("TripTotalTravellers", tripTotalTravellers);
+                context.startActivity(intent);
             }
         });
 
