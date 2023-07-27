@@ -24,7 +24,7 @@ public class TripPlanner extends AppCompatActivity {
     }
 
     public void viewSoloRoadMap(View view){
-        Intent intent = new Intent(TripPlanner.this,AddDestinations.class);
+        Intent intent = new Intent(TripPlanner.this,ViewSoloRoadMap.class);
         startActivity(intent);
     }
 
@@ -35,6 +35,16 @@ public class TripPlanner extends AppCompatActivity {
 
     public void userProfile(View view){
         Intent intent = new Intent(TripPlanner.this,UserProfile.class);
+        startActivity(intent);
+    }
+
+    public void destinationExplorer(View view){
+        Intent intent = new Intent(TripPlanner.this,DestinationsExplorer.class);
+        startActivity(intent);
+    }
+
+    public void destinationPlanner(View view){
+        Intent intent = new Intent(TripPlanner.this,DestinationPlanner.class);
         startActivity(intent);
     }
 }

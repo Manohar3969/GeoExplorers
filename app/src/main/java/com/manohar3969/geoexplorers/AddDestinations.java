@@ -204,12 +204,12 @@ public class AddDestinations extends AppCompatActivity {
                 DatabaseReference reference1 = reference.child(autoCompleteTextView.getText().toString()).child(DestinationId);
                 reference1.child("DestID").setValue(DestinationId);
                 reference1.child("DestName").setValue(editTextDestName.getText().toString());
-                reference1.child("DestType").setValue(destTypeSelected);
+                reference1.child("DestType").setValue(autoCompleteTextView.getText().toString());
                 reference1.child("DestImage").setValue(destImage);
 
                 //Toast.makeText(getBaseContext(),"Destination Added Successfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getBaseContext(),TripPlanner.class);
+                Intent intent = new Intent(getBaseContext(),ViewDestinations.class);
                 startActivity(intent);
                 finish();
 

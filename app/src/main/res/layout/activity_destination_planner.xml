@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TripPlanner">
+    tools:context=".DestinationPlanner">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -81,92 +81,6 @@
                     android:layout_marginRight="7dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:onClick="createSoloRoadMap"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="5dp">
-
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/signin2" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="sans-serif-condensed-medium"
-                            android:gravity="bottom|center_horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="25dp"
-                            android:text="Create Solo Trips"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:onClick="createGroupRoadMap"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="5dp">
-
-                    <ImageView
-                        android:id="@+id/imageView12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/nature_3" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="sans-serif-condensed-medium"
-                            android:gravity="bottom|center_horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="25dp"
-                            android:text="Create Group Trips"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:onClick="viewSoloRoadMap"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
@@ -188,8 +102,10 @@
                             android:layout_height="match_parent"
                             android:fontFamily="sans-serif-condensed-medium"
                             android:gravity="bottom|center_horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
                             android:paddingBottom="25dp"
-                            android:text="Your Solo Trips"
+                            android:text="Add Destination Type"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
                     </LinearLayout>
@@ -199,16 +115,61 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginLeft="7dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:onClick="viewGroupRoadMap"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
                     <ImageView
                         android:id="@+id/imageView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/signin3" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif-condensed-medium"
+                            android:gravity="bottom|center_horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="25dp"
+                            android:text="View Destination Types"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:onClick="addDestination"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:id="@+id/imageView11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
@@ -226,7 +187,44 @@
                             android:fontFamily="sans-serif-condensed-medium"
                             android:gravity="bottom|center_horizontal"
                             android:paddingBottom="25dp"
-                            android:text="Your Group Trips"
+                            android:text="Add Destinations"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:onClick="destinationsExplorer"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/signin2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif-condensed-medium"
+                            android:gravity="bottom|center_horizontal"
+                            android:paddingBottom="25dp"
+                            android:text="View Destinations"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
                     </LinearLayout>
@@ -282,6 +280,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="tripPlanner"
                     android:padding="15dp"
                     app:srcCompat="@drawable/calendar__1_" />
 
@@ -290,7 +289,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:onClick="destinationPlanner"
                     android:padding="15dp"
                     app:srcCompat="@drawable/outline_shield_24" />
 

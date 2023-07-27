@@ -1,6 +1,7 @@
 package com.manohar3969.geoexplorers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,12 @@ public class AdapterSoloRoadMapList extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String RoadMapID = soloRoadMapList.get(position).getEndDest();
+        String tripStartDate = soloRoadMapList.get(position).getStartDate();
+        String tripEndDate = soloRoadMapList.get(position).getEndDate();
+        String tripStartDest = soloRoadMapList.get(position).getStartDest();
+        String tripEndDest = soloRoadMapList.get(position).getEndDest();
+        String tripRoadMapID = soloRoadMapList.get(position).getRoadMapID();
+
         holder.textViewSoloTripStartDate.setText(soloRoadMapList.get(position).getStartDate());
         holder.textViewSoloTripStartDest.setText(soloRoadMapList.get(position).getStartDest());
         holder.textViewSoloTripEndDest.setText(soloRoadMapList.get(position).getEndDest());
@@ -44,7 +50,16 @@ public class AdapterSoloRoadMapList extends RecyclerView.Adapter<MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"RoadMapID = "+RoadMapID,Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context,ViewSoloRoadMapDetailed.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("TripStartDate",tripStartDate);
+                intent.putExtra("TripEndDate",tripEndDate);
+                intent.putExtra("TripStartDest",tripStartDest);
+                intent.putExtra("TripEndDest",tripEndDest);
+                intent.putExtra("TripRoadMapID",tripRoadMapID);
+                context.startActivity(intent);
+
             }
         });
     }
