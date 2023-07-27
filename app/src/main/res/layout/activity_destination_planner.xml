@@ -81,6 +81,7 @@
                     android:layout_marginRight="7dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
+                    android:onClick="addDestinationType"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
@@ -119,6 +120,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
+                    android:onClick="viewDestinationType"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
@@ -201,7 +203,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:onClick="destinationsExplorer"
+                    android:onClick="destinationExplorer"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 

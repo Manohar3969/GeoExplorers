@@ -19,10 +19,16 @@ public class DestinationPlanner extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void destinationsExplorer(View view){
-        Intent intent = new Intent(DestinationPlanner.this,DestinationsExplorer.class);
+    public void addDestinationType(View view){
+        Intent intent = new Intent(DestinationPlanner.this,AddDestinationType.class);
         startActivity(intent);
     }
+
+    public void viewDestinationType(View view){
+        Intent intent = new Intent(DestinationPlanner.this,ViewDestinationTypes.class);
+        startActivity(intent);
+    }
+
     public void destinationExplorer(View view){
         Intent intent = new Intent(DestinationPlanner.this,DestinationsExplorer.class);
         startActivity(intent);

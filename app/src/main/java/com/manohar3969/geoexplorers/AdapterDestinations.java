@@ -62,4 +62,5 @@ class DestinationsViewHolder extends RecyclerView.ViewHolder{
         imageViewDestinationImage = itemView.findViewById(R.id.imageViewDestinationImage);
 
     }
+
 }
