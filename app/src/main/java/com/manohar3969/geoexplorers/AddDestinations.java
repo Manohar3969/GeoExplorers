@@ -24,8 +24,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -48,7 +52,7 @@ public class AddDestinations extends AppCompatActivity {
     StorageReference storageReference;
     ImageView imageView;
     String destImage = null;
-
+    ArrayList<String> arrayListDestinationType = new ArrayList<>();
     AutoCompleteTextView autoCompleteTextView;
 
     @Override
@@ -65,27 +69,26 @@ public class AddDestinations extends AppCompatActivity {
         editTextDestName = findViewById(R.id.editTextDestName);
         textViewAddDestination = findViewById(R.id.textViewAddDestination);
 
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("- Select Destination Type -");
+
+        /*arrayList.add("- Select Destination Type -");
         arrayList.add("Beach");
         arrayList.add("Trekking");
         arrayList.add("Rock Climbing");
         arrayList.add("Mountain Climbing");
         arrayList.add("Holy Place");
         arrayList.add("Mountains");
-        arrayList.add("Train Trips");
+        arrayList.add("Train Trips");*/
 
         autoCompleteTextView = findViewById(R.id.autoCompleteTextViewDestType);
+        getDestinationTypes();
 
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+        /*ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDestType.setAdapter(arrayAdapter);
+        spinnerDestType.setAdapter(arrayAdapter);*/
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        autoCompleteTextView.setAdapter(adapter);
 
-        spinnerDestType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        /*spinnerDestType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 destTypeSelected =  parent.getItemAtPosition(position).toString();
@@ -94,7 +97,7 @@ public class AddDestinations extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         textViewAddDestination.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +212,7 @@ public class AddDestinations extends AppCompatActivity {
 
                 //Toast.makeText(getBaseContext(),"Destination Added Successfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getBaseContext(),ViewDestinations.class);
+                Intent intent = new Intent(getBaseContext(),ViewDestinationsList.class);
                 startActivity(intent);
                 finish();
 
@@ -217,6 +220,39 @@ public class AddDestinations extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Destination Type Image Not Selected", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void getDestinationTypes(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DestinationTypes");
+        Query query= reference.orderByChild("DestType");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    for(DataSnapshot dataSnapshot:snapshot.getChildren())
+                    {
+                        DestinationTypes destinationTypes = dataSnapshot.getValue(DestinationTypes.class);
+                        arrayListDestinationType.add(destinationTypes.getDestType());
+                    }
+                    addDestTypeListToDropDown();
+                }
+                else{
+                    Toast.makeText(getBaseContext(),"No Data Found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void addDestTypeListToDropDown(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayListDestinationType);
+        autoCompleteTextView.setAdapter(adapter);
     }
 
 }
