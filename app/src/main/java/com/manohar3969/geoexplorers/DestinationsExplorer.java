@@ -13,10 +13,4 @@ public class DestinationsExplorer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destinations_explorer);
     }
-
-    public void viewDestinations(View view){
-        Intent intent = new Intent(getBaseContext(),ViewDestinations.class);
-        startActivity(intent);
-        finish();
-    }
 }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -19,35 +18,28 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewDestinations extends AppCompatActivity {
+public class ViewDestinationsList extends AppCompatActivity {
 
-    RecyclerView recyclerViewViewDestinations;
-    AdapterDestinations adapterDestinations;
-    List<Destinations> destinationsList;
-
-    String destinationType;
+    RecyclerView recyclerViewViewDestinationType;
+    AdapterDestinationsList adapterDestinationsList;
+    List<DestinationTypes> destinationTypesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_destinations);
+        setContentView(R.layout.activity_view_destinations_list);
 
-        Intent intent = getIntent();
-        destinationType = intent.getStringExtra("DestType");
+        recyclerViewViewDestinationType = findViewById(R.id.recyclerViewViewDestinationTypes);
+        recyclerViewViewDestinationType.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerViewViewDestinations = findViewById(R.id.recyclerViewViewDestinations);
-        recyclerViewViewDestinations.setLayoutManager(new LinearLayoutManager(this));
-
-        destinationsList = new ArrayList<>();
-
-        getDestinationsList();
-
+        destinationTypesList = new ArrayList<>();
+        getDestinationTypesList();
     }
 
-    public void getDestinationsList(){
+    public void getDestinationTypesList(){
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
-        Query query = reference.child(destinationType).orderByChild("DestID");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DestinationTypes");
+        Query query = reference.orderByChild("DestTypeID");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,13 +47,13 @@ public class ViewDestinations extends AppCompatActivity {
 
                 if (snapshot.exists())
                 {
-                    destinationsList.clear();
+                    destinationTypesList.clear();
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                        Destinations destinations = dataSnapshot.getValue(Destinations.class);
-                        destinationsList.add(destinations);
+                        DestinationTypes destinationTypes = dataSnapshot.getValue(DestinationTypes.class);
+                        destinationTypesList.add(destinationTypes);
                     }
-                    adapterDestinations = new AdapterDestinations(getBaseContext(),destinationsList);
-                    recyclerViewViewDestinations.setAdapter(adapterDestinations);
+                    adapterDestinationsList = new AdapterDestinationsList(getBaseContext(),destinationTypesList);
+                    recyclerViewViewDestinationType.setAdapter(adapterDestinationsList);
                 }
                 else {
                     Toast.makeText(getBaseContext(),"No Data Found", Toast.LENGTH_SHORT).show();
@@ -76,5 +68,4 @@ public class ViewDestinations extends AppCompatActivity {
         });
 
     }
-
 }

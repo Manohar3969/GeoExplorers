@@ -24,6 +24,11 @@ public class DestinationPlanner extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewDestinationsList(View view){
+        Intent intent = new Intent(DestinationPlanner.this,ViewDestinationsList.class);
+        startActivity(intent);
+    }
+
     public void viewDestinationType(View view){
         Intent intent = new Intent(DestinationPlanner.this,ViewDestinationTypes.class);
         startActivity(intent);

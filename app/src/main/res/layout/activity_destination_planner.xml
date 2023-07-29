@@ -203,7 +203,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:onClick="destinationExplorer"
+                    android:onClick="viewDestinationsList"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="5dp">
 
