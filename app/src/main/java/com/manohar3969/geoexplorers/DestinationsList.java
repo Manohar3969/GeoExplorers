@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -18,17 +19,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dashboard extends AppCompatActivity {
-
+public class DestinationsList extends AppCompatActivity {
     RecyclerView recyclerViewViewDestinations;
-    AdapterDashboard adapterDashboard;
+    AdapterDestinationsListDetails adapterDestinationsListDetails;
     List<Destinations> destinationsList;
-    String destinationType = "Beaches";
+    String destinationType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_destinations_list);
+        Intent intent = getIntent();
+        destinationType = intent.getStringExtra("DestType");
 
         recyclerViewViewDestinations = findViewById(R.id.recyclerViewViewDestinations);
         recyclerViewViewDestinations.setLayoutManager(new LinearLayoutManager(this));
@@ -55,8 +57,8 @@ public class Dashboard extends AppCompatActivity {
                         Destinations destinations = dataSnapshot.getValue(Destinations.class);
                         destinationsList.add(destinations);
                     }
-                    adapterDashboard = new AdapterDashboard(getBaseContext(),destinationsList);
-                    recyclerViewViewDestinations.setAdapter(adapterDashboard);
+                    adapterDestinationsListDetails = new AdapterDestinationsListDetails(getBaseContext(),destinationsList);
+                    recyclerViewViewDestinations.setAdapter(adapterDestinationsListDetails);
                 }
                 else {
                     Toast.makeText(getBaseContext(),"No Data Found", Toast.LENGTH_SHORT).show();

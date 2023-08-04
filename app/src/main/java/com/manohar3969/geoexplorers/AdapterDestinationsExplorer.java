@@ -1,6 +1,7 @@
 package com.manohar3969.geoexplorers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,17 @@ public class AdapterDestinationsExplorer extends RecyclerView.Adapter<Destinatio
         holder.textViewDestinationType.setText(destinationTypeList.get(position).getDestType());
         Uri imageUri = Uri.parse(destinationTypeList.get(position).getDestTypeImage());
         Picasso.get().load(imageUri).centerCrop().fit().into(holder.imageViewDestinationTypeImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,DestinationsList.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("DestType", destType);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

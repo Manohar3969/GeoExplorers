@@ -13,6 +13,10 @@ public class TripPlanner extends AppCompatActivity {
         setContentView(R.layout.activity_trip_planner);
     }
 
+    public void dashBoard(View view){
+        Intent intent = new Intent(TripPlanner.this,Dashboard.class);
+        startActivity(intent);
+    }
     public void createSoloRoadMap(View view){
         Intent intent = new Intent(TripPlanner.this,CreateSoloRoadMap.class);
         startActivity(intent);
