@@ -133,6 +133,18 @@
                         android:fontFamily="sans-serif"
                         android:hint="Start Destination"
                         android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:visibility="gone" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextViewStartDest"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="Start Destination"
                         android:paddingLeft="10dp" />
 
                     <ImageView
@@ -171,6 +183,18 @@
                         android:fontFamily="sans-serif"
                         android:hint="End Destination"
                         android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:visibility="gone" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextViewEndDest"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="End Destination"
                         android:paddingLeft="10dp" />
 
                     <ImageView
@@ -191,7 +215,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
-                android:onClick="createSoloRoadMap"
+                android:onClick="dataValidations"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout

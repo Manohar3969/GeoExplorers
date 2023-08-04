@@ -11,6 +11,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +38,10 @@ public class CreateSoloRoadMap extends AppCompatActivity {
     EditText editTextStartDest, editTextEndDest;
     ImageView imageViewStartDate, imageViewEndDate;
     ArrayList<Users> usersArrayList = new ArrayList<>();
+    List<String> destinationsNames, endDestinationsImages;
+    int position;
+
+    AutoCompleteTextView autoCompleteTextViewStartDest, autoCompleteTextViewEndDest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,14 @@ public class CreateSoloRoadMap extends AppCompatActivity {
         imageViewStartDate = findViewById(R.id.imageView13);
         imageViewEndDate = findViewById(R.id.imageView14);
 
+        autoCompleteTextViewStartDest = findViewById(R.id.autoCompleteTextViewStartDest);
+        autoCompleteTextViewEndDest = findViewById(R.id.autoCompleteTextViewEndDest);
+
+        destinationsNames = new ArrayList<>();
+        endDestinationsImages = new ArrayList<>();
+
         getUserDetails();
+        getDestinationDetails();
 
         imageViewStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +102,23 @@ public class CreateSoloRoadMap extends AppCompatActivity {
         });
     }
 
+    public void dataValidations(View view){
+        if(autoCompleteTextViewStartDest.getText().toString().isEmpty()){
+            autoCompleteTextViewStartDest.setError("Mandatory Field");
+        } else if (autoCompleteTextViewEndDest.getText().toString().isEmpty()) {
+            autoCompleteTextViewEndDest.setError("Mandatory Field");
+        } else if (destinationsNames.contains(autoCompleteTextViewStartDest.getText().toString()) == false) {
+            autoCompleteTextViewStartDest.setError("Enter Destination from Drop Down");
+        } else if (destinationsNames.contains(autoCompleteTextViewEndDest.getText().toString())==false) {
+            autoCompleteTextViewEndDest.setError("Enter Destination from Drop Down");
+        } else if (autoCompleteTextViewStartDest.getText().toString().equals(autoCompleteTextViewEndDest.getText().toString())) {
+            autoCompleteTextViewEndDest.setError("Start and End Destination Cannot Be Same");
+        } else {
+            position = destinationsNames.indexOf(autoCompleteTextViewEndDest.getText().toString());
+            addSoloTrip();
+        }
+    }
+
     public void createSoloRoadMap(View view){
         addSoloTrip();
     }
@@ -105,8 +135,9 @@ public class CreateSoloRoadMap extends AppCompatActivity {
         reference1.child("UserID").setValue(usersArrayList.get(0).getUserID());
         reference1.child("StartDate").setValue(editTextStartDate.getText().toString());
         reference1.child("EndDate").setValue(editTextEndDate.getText().toString());
-        reference1.child("StartDest").setValue(editTextStartDest.getText().toString());
-        reference1.child("EndDest").setValue(editTextEndDest.getText().toString());
+        reference1.child("StartDest").setValue(autoCompleteTextViewStartDest.getText().toString());
+        reference1.child("EndDest").setValue(autoCompleteTextViewEndDest.getText().toString());
+        reference1.child("EndDestImage").setValue(endDestinationsImages.get(position));
 
         //Toast.makeText(getBaseContext(),"Road Map Added Successfully !!!",Toast.LENGTH_SHORT).show();
 
@@ -176,6 +207,49 @@ public class CreateSoloRoadMap extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void getDestinationDetails(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
+        Query query = reference.child("Beaches").orderByChild("DestID");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists())
+                {
+                    destinationsNames.clear();
+                    endDestinationsImages.clear();
+                    for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                        Destinations destinations = dataSnapshot.getValue(Destinations.class);
+                        destinationsNames.add(destinations.getDestName());
+                        endDestinationsImages.add(destinations.getDestImage());
+                    }
+                    addStartDestAutoText();
+                    addEndDestAutoText();
+                }
+                else {
+                    Toast.makeText(getBaseContext(),"No Data Found", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getBaseContext(),"Data Fetch Cancelled", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void addStartDestAutoText(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, destinationsNames);
+        autoCompleteTextViewStartDest.setAdapter(adapter);
+    }
+
+    public void addEndDestAutoText(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, destinationsNames);
+        autoCompleteTextViewEndDest.setAdapter(adapter);
     }
 
 }

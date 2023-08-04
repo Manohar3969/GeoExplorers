@@ -9,17 +9,29 @@ public class SoloRoadMap {
     private String StartDest;
     private String UserID;
 
+    private String EndDestImage;
+
     public SoloRoadMap(){
 
     }
 
-    public SoloRoadMap(String endDate, String endDest, String roadMapID, String startDate, String startDest, String userID) {
+
+    public SoloRoadMap(String endDate, String endDest, String roadMapID, String startDate, String startDest, String userID, String endDestImage) {
         EndDate = endDate;
         EndDest = endDest;
         RoadMapID = roadMapID;
         StartDate = startDate;
         StartDest = startDest;
         UserID = userID;
+        EndDestImage = endDestImage;
+    }
+
+    public String getEndDestImage() {
+        return EndDestImage;
+    }
+
+    public void setEndDestImage(String endDestImage) {
+        EndDestImage = endDestImage;
     }
 
     public String getEndDate() {

@@ -2,6 +2,7 @@ package com.manohar3969.geoexplorers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +49,8 @@ public class AdapterSoloRoadMapList extends RecyclerView.Adapter<MyViewHolder> {
         holder.textViewSoloTripStartDate.setText(soloRoadMapList.get(position).getStartDate());
         holder.textViewSoloTripStartDest.setText(soloRoadMapList.get(position).getStartDest());
         holder.textViewSoloTripEndDest.setText(soloRoadMapList.get(position).getEndDest());
+        Uri imageUri = Uri.parse(soloRoadMapList.get(position).getEndDestImage());
+        Picasso.get().load(imageUri).into(holder.imageViewSoloTripEndDestImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
