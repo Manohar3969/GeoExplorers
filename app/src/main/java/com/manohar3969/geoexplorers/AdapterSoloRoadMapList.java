@@ -45,6 +45,7 @@ public class AdapterSoloRoadMapList extends RecyclerView.Adapter<MyViewHolder> {
         String tripStartDest = soloRoadMapList.get(position).getStartDest();
         String tripEndDest = soloRoadMapList.get(position).getEndDest();
         String tripRoadMapID = soloRoadMapList.get(position).getRoadMapID();
+        String tripEndDestImage = soloRoadMapList.get(position).getEndDestImage();
 
         holder.textViewSoloTripStartDate.setText(soloRoadMapList.get(position).getStartDate());
         holder.textViewSoloTripStartDest.setText(soloRoadMapList.get(position).getStartDest());
@@ -63,6 +64,7 @@ public class AdapterSoloRoadMapList extends RecyclerView.Adapter<MyViewHolder> {
                 intent.putExtra("TripStartDest",tripStartDest);
                 intent.putExtra("TripEndDest",tripEndDest);
                 intent.putExtra("TripRoadMapID",tripRoadMapID);
+                intent.putExtra("TripEndDestImage", tripEndDestImage);
                 context.startActivity(intent);
 
             }

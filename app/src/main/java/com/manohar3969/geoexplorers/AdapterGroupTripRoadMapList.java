@@ -46,6 +46,7 @@ public class AdapterGroupTripRoadMapList extends RecyclerView.Adapter<GroupTripV
         String tripEndDest = groupTripRoadMapList.get(position).getEndDest();
         String tripRoadMapID = groupTripRoadMapList.get(position).getRoadMapID();
         String tripTotalTravellers = groupTripRoadMapList.get(position).getTotalTravellers();
+        String tripEndDestImage = groupTripRoadMapList.get(position).getEndDestImage();
 
         holder.textViewSoloTripStartDate.setText(groupTripRoadMapList.get(position).getStartDate());
         holder.textViewSoloTripStartDest.setText(groupTripRoadMapList.get(position).getStartDest());
@@ -64,6 +65,7 @@ public class AdapterGroupTripRoadMapList extends RecyclerView.Adapter<GroupTripV
                 intent.putExtra("TripEndDest",tripEndDest);
                 intent.putExtra("TripRoadMapID",tripRoadMapID);
                 intent.putExtra("TripTotalTravellers", tripTotalTravellers);
+                intent.putExtra("TripEndDestImage", tripEndDestImage);
                 context.startActivity(intent);
             }
         });
