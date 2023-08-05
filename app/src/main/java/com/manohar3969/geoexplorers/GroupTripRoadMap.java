@@ -7,21 +7,33 @@ public class GroupTripRoadMap {
     private String StartDate;
     private String StartDest;
     private String UserID;
+    private String EndDestImage;
     private String TotalTravellers;
 
     public GroupTripRoadMap(){
 
     }
 
-    public GroupTripRoadMap(String endDate, String endDest, String roadMapID, String startDate, String startDest, String userID, String totalTravellers) {
+    public GroupTripRoadMap(String endDate, String endDest, String roadMapID, String startDate, String startDest, String userID, String endDestImage, String totalTravellers) {
         EndDate = endDate;
         EndDest = endDest;
         RoadMapID = roadMapID;
         StartDate = startDate;
         StartDest = startDest;
         UserID = userID;
+        EndDestImage = endDestImage;
         TotalTravellers = totalTravellers;
     }
+
+    public String getEndDestImage() {
+        return EndDestImage;
+    }
+
+    public void setEndDestImage(String endDestImage) {
+        EndDestImage = endDestImage;
+    }
+
+
 
     public String getEndDate() {
         return EndDate;
