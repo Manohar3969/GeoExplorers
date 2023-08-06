@@ -57,7 +57,7 @@ public class AdapterGroupTripRoadMapList extends RecyclerView.Adapter<GroupTripV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,ViewSoloRoadMapDetailed.class);
+                Intent intent = new Intent(context,ViewGroupRoadMapDetailed.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("TripStartDate",tripStartDate);
                 intent.putExtra("TripEndDate",tripEndDate);

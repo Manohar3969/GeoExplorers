@@ -123,7 +123,12 @@ public class ViewGroupRoadMapDetailed extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.exists())
                                 {
-                                    snapshot.getRef().removeValue();
+                                    for (DataSnapshot dataSnapshot:snapshot.getChildren())
+                                    {
+                                        dataSnapshot.getRef().removeValue();
+
+                                    }
+
                                     //Toast.makeText(getBaseContext(),"Total Children"+snapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(getBaseContext(),ViewGroupRoadMap.class);
@@ -131,7 +136,7 @@ public class ViewGroupRoadMapDetailed extends AppCompatActivity {
                                     finish();
                                 }
                                 else {
-                                    Toast.makeText(getBaseContext(),"RoadMap"+TripRoadMapID+" Not Found to Delete", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(),"RoadMap "+TripRoadMapID+" Not Found to Delete", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override

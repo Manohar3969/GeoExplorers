@@ -121,7 +121,7 @@ public class ViewSoloRoadMapDetailed extends AppCompatActivity {
     public void deleteSoloTripRoadMap(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ViewSoloRoadMapDetailed.this);
 
-        alertDialogBuilder.setTitle("Delete Group Trip Road Map");
+        alertDialogBuilder.setTitle("Delete Solo Trip Road Map");
         alertDialogBuilder.setMessage("Do You Want to Delete this Road Map?")
                 .setCancelable(true).
                 setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -134,7 +134,12 @@ public class ViewSoloRoadMapDetailed extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.exists())
                                 {
-                                    snapshot.getRef().removeValue();
+
+                                    for (DataSnapshot dataSnapshot:snapshot.getChildren())
+                                    {
+                                        dataSnapshot.getRef().removeValue();
+                                    }
+
                                     //Toast.makeText(getBaseContext(),"Total Snapshots"+snapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(getBaseContext(),ViewSoloRoadMap.class);

@@ -74,7 +74,7 @@
                 android:layout_marginTop="25dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center"
-                android:text="Trip Details"
+                android:text="Group Trip Details"
                 android:textSize="20sp" />
 
             <androidx.cardview.widget.CardView
