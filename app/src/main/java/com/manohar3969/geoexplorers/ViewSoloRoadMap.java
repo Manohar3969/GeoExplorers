@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ public class ViewSoloRoadMap extends AppCompatActivity {
     RecyclerView recyclerViewViewSoloRoadMapList;
     AdapterSoloRoadMapList adapterSoloRoadMapList;
     List<SoloRoadMap> soloRoadMapList;
+    ArrayList<String> usersArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +37,14 @@ public class ViewSoloRoadMap extends AppCompatActivity {
 
         soloRoadMapList = new ArrayList<>();
 
-        getSoloRoadMapList();
+        getUserDetails();
+
     }
 
     public void getSoloRoadMapList(){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("SoloRoadMap");
-        Query query = reference.orderByChild("RoadMapID");
+        Query query = reference.orderByChild("UserID").equalTo(usersArrayList.get(0));
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,5 +72,33 @@ public class ViewSoloRoadMap extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void getUserDetails(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        Query query = reference.orderByChild("UserEmailID").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    usersArrayList = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                    {
+                        Users users = dataSnapshot.getValue(Users.class);
+                        usersArrayList.add(users.getUserID());
+                    }
+                    getSoloRoadMapList();
+                }
+                else {
+                    Log.v("Error","Data Not Found");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

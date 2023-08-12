@@ -23,9 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class UpdateGroupTripRoadMap extends AppCompatActivity {
 
@@ -95,6 +97,7 @@ public class UpdateGroupTripRoadMap extends AppCompatActivity {
 
                     }
                 },myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DATE));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });
@@ -111,6 +114,7 @@ public class UpdateGroupTripRoadMap extends AppCompatActivity {
 
                     }
                 },myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DATE));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });
@@ -118,6 +122,7 @@ public class UpdateGroupTripRoadMap extends AppCompatActivity {
     }
 
     public void dataValidations(View view){
+        int dateDifference = (int) getDateDiff(new SimpleDateFormat("dd/MM/yyyy"), editTextStartDate.getText().toString(), editTextEndDate.getText().toString());
         if(autoCompleteTextViewStartDest.getText().toString().isEmpty()){
             autoCompleteTextViewStartDest.setError("Mandatory Field");
         } else if (autoCompleteTextViewEndDest.getText().toString().isEmpty()) {
@@ -130,9 +135,20 @@ public class UpdateGroupTripRoadMap extends AppCompatActivity {
             autoCompleteTextViewEndDest.setError("Start and End Destination Cannot Be Same");
         } else if (editTextTotalTravellers.getText().toString().isEmpty()) {
             editTextTotalTravellers.setError("Mandatory Field");
+        }else if (dateDifference<0) {
+            editTextEndDate.setError("End Date Should be greater than or Equal to Start Date!!!");
         } else {
             position = destinationsNames.indexOf(autoCompleteTextViewEndDest.getText().toString());
             updateGroupTrip();
+        }
+    }
+
+    public static long getDateDiff(SimpleDateFormat format, String oldDate, String newDate) {
+        try {
+            return TimeUnit.DAYS.convert(format.parse(newDate).getTime() - format.parse(oldDate).getTime(), TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 

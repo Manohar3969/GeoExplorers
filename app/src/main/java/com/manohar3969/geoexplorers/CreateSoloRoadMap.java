@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -81,6 +83,7 @@ public class CreateSoloRoadMap extends AppCompatActivity {
 
                     }
                 },myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DATE));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });
@@ -97,12 +100,15 @@ public class CreateSoloRoadMap extends AppCompatActivity {
 
                     }
                 },myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DATE));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.getDatePicker().setMaxDate((System.currentTimeMillis() - 1000)+(1000*60*60*24*24));
                 datePickerDialog.show();
             }
         });
     }
 
     public void dataValidations(View view){
+        int dateDifference = (int) getDateDiff(new SimpleDateFormat("dd/MM/yyyy"), editTextStartDate.getText().toString(), editTextEndDate.getText().toString());
         if(autoCompleteTextViewStartDest.getText().toString().isEmpty()){
             autoCompleteTextViewStartDest.setError("Mandatory Field");
         } else if (autoCompleteTextViewEndDest.getText().toString().isEmpty()) {
@@ -113,12 +119,22 @@ public class CreateSoloRoadMap extends AppCompatActivity {
             autoCompleteTextViewEndDest.setError("Enter Destination from Drop Down");
         } else if (autoCompleteTextViewStartDest.getText().toString().equals(autoCompleteTextViewEndDest.getText().toString())) {
             autoCompleteTextViewEndDest.setError("Start and End Destination Cannot Be Same");
+        } else if (dateDifference<0) {
+            editTextEndDate.setError("End Date Should be greater than or Equal to Start Date!!!");
         } else {
             position = destinationsNames.indexOf(autoCompleteTextViewEndDest.getText().toString());
             addSoloTrip();
         }
     }
 
+    public static long getDateDiff(SimpleDateFormat format, String oldDate, String newDate) {
+        try {
+            return TimeUnit.DAYS.convert(format.parse(newDate).getTime() - format.parse(oldDate).getTime(), TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
     public void createSoloRoadMap(View view){
         addSoloTrip();
     }
