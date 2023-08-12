@@ -107,6 +107,19 @@ public class ViewGroupRoadMapDetailed extends AppCompatActivity {
         return locDetails;
     }
 
+    public void updateGroupTripRoadMap(View view){
+        Intent intent = new Intent(getBaseContext(),UpdateGroupTripRoadMap.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("TripStartDate",TripStartDate);
+        intent.putExtra("TripEndDate",TripEndDate);
+        intent.putExtra("TripStartDest",TripStartDest);
+        intent.putExtra("TripEndDest",TripEndDest);
+        intent.putExtra("TripRoadMapID","RoadMap"+TripRoadMapID);
+        intent.putExtra("TripTotalTravellers", TripTotalTravellers);
+        intent.putExtra("TripEndDestImage", TripEndDestImage);
+        startActivity(intent);
+    }
+
     public void deleteGroupTripRoadMap(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ViewGroupRoadMapDetailed.this);
 

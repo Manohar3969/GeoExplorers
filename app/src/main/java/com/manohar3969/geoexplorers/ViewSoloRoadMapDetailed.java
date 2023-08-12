@@ -118,6 +118,18 @@ public class ViewSoloRoadMapDetailed extends AppCompatActivity {
         return locDetails;
     }
 
+    public void updateSoloRoadMap(View view){
+        Intent intent = new Intent(getBaseContext(),UpdateSoloRoadMap.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("TripStartDate",TripStartDate);
+        intent.putExtra("TripEndDate",TripEndDate);
+        intent.putExtra("TripStartDest",TripStartDest);
+        intent.putExtra("TripEndDest",TripEndDest);
+        intent.putExtra("TripRoadMapID","RoadMap"+TripRoadMapID);
+        intent.putExtra("TripEndDestImage", TripEndDestImage);
+        startActivity(intent);
+    }
+
     public void deleteSoloTripRoadMap(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ViewSoloRoadMapDetailed.this);
 
