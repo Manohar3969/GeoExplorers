@@ -13,10 +13,8 @@ public class TripPlanner extends AppCompatActivity {
         setContentView(R.layout.activity_trip_planner);
     }
 
-    public void dashBoard(View view){
-        Intent intent = new Intent(TripPlanner.this,Dashboard.class);
-        startActivity(intent);
-    }
+    // Activity Functions
+
     public void createSoloRoadMap(View view){
         Intent intent = new Intent(TripPlanner.this,CreateSoloRoadMap.class);
         startActivity(intent);
@@ -36,19 +34,39 @@ public class TripPlanner extends AppCompatActivity {
         Intent intent = new Intent(TripPlanner.this,ViewGroupRoadMap.class);
         startActivity(intent);
     }
-
-    public void userProfile(View view){
-        Intent intent = new Intent(TripPlanner.this,UserProfile.class);
-        startActivity(intent);
-    }
-
-    public void destinationExplorer(View view){
-        Intent intent = new Intent(TripPlanner.this,DestinationsExplorer.class);
-        startActivity(intent);
-    }
-
     public void destinationPlanner(View view){
         Intent intent = new Intent(TripPlanner.this,DestinationPlanner.class);
         startActivity(intent);
+    }
+
+    // Bottom Navigation Bar Functions
+    public void dashBoard(View view){
+        Intent intent = new Intent(this,Dashboard.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void userProfile(View view){
+        Intent intent = new Intent(this,UserProfile.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void destinationExplorer(View view){
+        Intent intent = new Intent(this,DestinationsExplorer.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void tripPlanner(View view){
+        Intent intent = new Intent(this,TripPlanner.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void searchTrips(View view){
+        Intent intent = new Intent(this,SearchTrips.class);
+        startActivity(intent);
+        finish();
     }
 }

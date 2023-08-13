@@ -279,21 +279,22 @@
                     app:srcCompat="@drawable/compass_regular" />
 
                 <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/calendar__1_" />
-
-                <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:onClick="destinationPlanner"
+                    android:onClick="searchTrips"
                     android:padding="15dp"
-                    app:srcCompat="@drawable/outline_shield_24" />
+                    app:srcCompat="@drawable/baseline_search_24" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="tripPlanner"
+                    android:padding="15dp"
+                    app:srcCompat="@drawable/calendar__1_" />
 
                 <ImageView
                     android:id="@+id/imageView7"

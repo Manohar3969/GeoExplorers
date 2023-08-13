@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-              Intent intent = new Intent(getBaseContext(), GoogleSignIn.class);
+              Intent intent = new Intent(getBaseContext(), Dashboard.class);
               startActivity(intent);
               finish();
             }

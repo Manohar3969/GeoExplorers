@@ -250,7 +250,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -271,6 +271,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="dashBoard"
                     android:padding="15dp"
                     app:srcCompat="@drawable/dashboards" />
 
@@ -279,30 +280,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="destinationExplorer"
                     android:padding="15dp"
                     app:srcCompat="@drawable/compass_regular" />
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/calendar__1_" />
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="searchTrips"
                     android:padding="15dp"
-                    app:srcCompat="@drawable/heart_regular" />
+                    app:srcCompat="@drawable/baseline_search_24" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="tripPlanner"
+                    android:padding="15dp"
+                    app:srcCompat="@drawable/calendar__1_" />
 
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="userProfile"
                     android:padding="17dp"
                     app:srcCompat="@drawable/user_regular" />
             </LinearLayout>

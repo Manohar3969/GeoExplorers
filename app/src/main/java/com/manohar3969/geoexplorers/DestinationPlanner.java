@@ -34,17 +34,34 @@ public class DestinationPlanner extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void destinationExplorer(View view){
-        Intent intent = new Intent(DestinationPlanner.this,DestinationsExplorer.class);
+    // Bottom Navigation Bar Functions
+    public void dashBoard(View view){
+        Intent intent = new Intent(this,Dashboard.class);
         startActivity(intent);
+        finish();
     }
+
     public void userProfile(View view){
-        Intent intent = new Intent(DestinationPlanner.this,UserProfile.class);
+        Intent intent = new Intent(this,UserProfile.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void destinationExplorer(View view){
+        Intent intent = new Intent(this,DestinationsExplorer.class);
+        startActivity(intent);
+        finish();
     }
 
     public void tripPlanner(View view){
-        Intent intent = new Intent(DestinationPlanner.this,TripPlanner.class);
+        Intent intent = new Intent(this,TripPlanner.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void searchTrips(View view){
+        Intent intent = new Intent(this,SearchTrips.class);
+        startActivity(intent);
+        finish();
     }
 }
