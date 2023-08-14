@@ -32,7 +32,7 @@ public class AdapterDashboard extends RecyclerView.Adapter<DashboardViewHolder> 
     @NonNull
     @Override
     public DashboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_group_trip_road_map, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_dashboard, parent, false);
         return new DashboardViewHolder(view);
     }
 
@@ -47,7 +47,7 @@ public class AdapterDashboard extends RecyclerView.Adapter<DashboardViewHolder> 
         String tripEndDestImage = groupTripRoadMapList.get(position).getEndDestImage();
 
         holder.textViewSoloTripStartDate.setText(groupTripRoadMapList.get(position).getStartDate());
-        holder.textViewSoloTripStartDest.setText(groupTripRoadMapList.get(position).getStartDest());
+        //holder.textViewSoloTripStartDest.setText(groupTripRoadMapList.get(position).getStartDest());
         holder.textViewSoloTripEndDest.setText(groupTripRoadMapList.get(position).getEndDest());
         Uri imageUri = Uri.parse(groupTripRoadMapList.get(position).getEndDestImage());
         Picasso.get().load(imageUri).into(holder.imageViewSoloTripEndDestImage);
@@ -66,7 +66,7 @@ class DashboardViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         imageViewSoloTripEndDestImage = itemView.findViewById(R.id.imageViewSoloTripEndDestImage);
         textViewSoloTripStartDate = itemView.findViewById(R.id.textViewSoloTripStartDate);
-        textViewSoloTripStartDest = itemView.findViewById(R.id.textViewSoloTripStartDest);
+        //textViewSoloTripStartDest = itemView.findViewById(R.id.textViewSoloTripStartDest);
         textViewSoloTripEndDest = itemView.findViewById(R.id.textViewSoloTripEndDest);
     }
 }

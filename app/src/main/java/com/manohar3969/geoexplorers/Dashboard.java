@@ -25,7 +25,7 @@ import java.util.List;
 public class Dashboard extends AppCompatActivity {
 
     RecyclerView recyclerViewViewGroupRoadMapList;
-    AdapterGroupTripRoadMapList adapterGroupTripRoadMapList;
+    AdapterDashboard adapterDashboard;
     List<GroupTripRoadMap> groupTripRoadMapList;
     ArrayList<String> usersArrayList = new ArrayList<>();
 
@@ -59,8 +59,8 @@ public class Dashboard extends AppCompatActivity {
                         GroupTripRoadMap groupTripRoadMap = dataSnapshot.getValue(GroupTripRoadMap.class);
                         groupTripRoadMapList.add(groupTripRoadMap);
                     }
-                    adapterGroupTripRoadMapList = new AdapterGroupTripRoadMapList(getBaseContext(),groupTripRoadMapList);
-                    recyclerViewViewGroupRoadMapList.setAdapter(adapterGroupTripRoadMapList);
+                    adapterDashboard = new AdapterDashboard(getBaseContext(),groupTripRoadMapList);
+                    recyclerViewViewGroupRoadMapList.setAdapter(adapterDashboard);
                 }
                 else {
                     Toast.makeText(getBaseContext(),"No Data Found", Toast.LENGTH_SHORT).show();

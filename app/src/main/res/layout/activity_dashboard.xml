@@ -29,7 +29,6 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
-                android:text="Your Group Trip Road Maps"
                 android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
