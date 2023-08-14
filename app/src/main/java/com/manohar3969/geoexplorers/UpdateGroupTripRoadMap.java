@@ -205,7 +205,7 @@ public class UpdateGroupTripRoadMap extends AppCompatActivity {
 
     public void getDestinationDetails(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
-        Query query = reference.child("Beaches").orderByChild("DestID");
+        Query query = reference.orderByChild("DestID");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

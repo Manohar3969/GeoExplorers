@@ -158,7 +158,7 @@ public class AddDestinationType extends AppCompatActivity {
 
                 DatabaseReference reference1 = reference.child(DestinationTypeId);
                 reference1.child("DestTypeID").setValue(DestinationTypeId);
-                reference1.child("DestType").setValue(editTextDestType.getText().toString());
+                reference1.child("DestType").setValue(editTextDestType.getText().toString().trim());
                 reference1.child("DestTypeImage").setValue(destImage);
 
                 Intent intent = new Intent(getBaseContext(),ViewDestinationTypes.class);

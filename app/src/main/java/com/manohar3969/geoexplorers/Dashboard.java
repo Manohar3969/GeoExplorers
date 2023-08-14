@@ -25,7 +25,6 @@ public class Dashboard extends AppCompatActivity {
     RecyclerView recyclerViewViewDestinations;
     AdapterDashboard adapterDashboard;
     List<Destinations> destinationsList;
-    String destinationType = "Beaches";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class Dashboard extends AppCompatActivity {
     public void getDestinationsList(){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
-        Query query = reference.child(destinationType).orderByChild("DestID");
+        Query query = reference.orderByChild("DestID");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

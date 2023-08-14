@@ -194,20 +194,19 @@ public class AddDestinations extends AppCompatActivity {
         else if (autoCompleteTextView.getText().toString().isEmpty()) {
             autoCompleteTextView.requestFocus();
             autoCompleteTextView.setError("Mandatory Field");
-        }
-        /*else if (destTypeSelected.equals("- Select Destination Type ")) {
-            spinnerDestType.requestFocus();
-        }*/
-        else {
+        } else if (arrayListDestinationType.contains(autoCompleteTextView.getText().toString()) == false) {
+            autoCompleteTextView.requestFocus();
+            autoCompleteTextView.setError("Destination Type is not selected from From Down");
+        } else {
 
             if (destImage != null) {
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
 
-                DatabaseReference reference1 = reference.child(autoCompleteTextView.getText().toString()).child(DestinationId);
+                DatabaseReference reference1 = reference.child(DestinationId);
                 reference1.child("DestID").setValue(DestinationId);
-                reference1.child("DestName").setValue(editTextDestName.getText().toString());
-                reference1.child("DestType").setValue(autoCompleteTextView.getText().toString());
+                reference1.child("DestName").setValue(editTextDestName.getText().toString().trim());
+                reference1.child("DestType").setValue(autoCompleteTextView.getText().toString().trim());
                 reference1.child("DestImage").setValue(destImage);
 
                 //Toast.makeText(getBaseContext(),"Destination Added Successfully", Toast.LENGTH_SHORT).show();

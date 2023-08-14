@@ -45,7 +45,7 @@ public class DestinationsList extends AppCompatActivity {
     public void getDestinationsList(){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
-        Query query = reference.child(destinationType).orderByChild("DestID");
+        Query query = reference.orderByChild("DestType").equalTo(destinationType);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

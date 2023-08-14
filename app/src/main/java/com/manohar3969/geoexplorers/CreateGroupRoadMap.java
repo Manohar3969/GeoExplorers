@@ -146,12 +146,12 @@ public class CreateGroupRoadMap extends AppCompatActivity {
         reference1 = reference1.child(RoadMapID);
         reference1.child("RoadMapID").setValue(RoadMapID);
         reference1.child("UserID").setValue(usersArrayList.get(0).getUserID());
-        reference1.child("StartDate").setValue(editTextStartDate.getText().toString());
-        reference1.child("EndDate").setValue(editTextEndDate.getText().toString());
-        reference1.child("StartDest").setValue(autoCompleteTextViewStartDest.getText().toString());
-        reference1.child("EndDest").setValue(autoCompleteTextViewEndDest.getText().toString());
+        reference1.child("StartDate").setValue(editTextStartDate.getText().toString().trim());
+        reference1.child("EndDate").setValue(editTextEndDate.getText().toString().trim());
+        reference1.child("StartDest").setValue(autoCompleteTextViewStartDest.getText().toString().trim());
+        reference1.child("EndDest").setValue(autoCompleteTextViewEndDest.getText().toString().trim());
         reference1.child("EndDestImage").setValue(endDestinationsImages.get(position));
-        reference1.child("TotalTravellers").setValue(editTextTotalTravellers.getText().toString());
+        reference1.child("TotalTravellers").setValue(editTextTotalTravellers.getText().toString().trim());
 
         //Toast.makeText(getBaseContext(),"Road Map Added Successfully !!!",Toast.LENGTH_SHORT).show();
 
@@ -190,7 +190,7 @@ public class CreateGroupRoadMap extends AppCompatActivity {
 
     public void getDestinationDetails(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Destinations");
-        Query query = reference.child("Beaches").orderByChild("DestID");
+        Query query = reference.orderByChild("DestID");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
