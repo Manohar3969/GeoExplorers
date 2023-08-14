@@ -138,7 +138,7 @@ public class CreateGroupRoadMap extends AppCompatActivity {
     }
 
     public void addGroupTrip(){
-        Toast.makeText(getBaseContext(),"Data Found Outside"+ usersArrayList.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),"Data Found Outside"+ usersArrayList.size(), Toast.LENGTH_SHORT).show();
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("GroupTripRoadMap");
         String RoadMapID = "RoadMap"+ Calendar.getInstance().getTimeInMillis();
