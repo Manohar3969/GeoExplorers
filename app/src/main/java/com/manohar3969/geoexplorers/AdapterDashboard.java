@@ -1,6 +1,7 @@
 package com.manohar3969.geoexplorers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,22 @@ public class AdapterDashboard extends RecyclerView.Adapter<DashboardViewHolder> 
         holder.textViewSoloTripEndDest.setText(groupTripRoadMapList.get(position).getEndDest());
         Uri imageUri = Uri.parse(groupTripRoadMapList.get(position).getEndDestImage());
         Picasso.get().load(imageUri).into(holder.imageViewSoloTripEndDestImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,DashboardTripDetailed.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("TripStartDate",tripStartDate);
+                intent.putExtra("TripEndDate",tripEndDate);
+                intent.putExtra("TripStartDest",tripStartDest);
+                intent.putExtra("TripEndDest",tripEndDest);
+                intent.putExtra("TripRoadMapID",tripRoadMapID);
+                intent.putExtra("TripTotalTravellers", tripTotalTravellers);
+                intent.putExtra("TripEndDestImage", tripEndDestImage);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
