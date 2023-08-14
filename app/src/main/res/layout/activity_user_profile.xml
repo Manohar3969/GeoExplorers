@@ -150,8 +150,9 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:visibility="invisible"
-                    app:cardCornerRadius="10dp">
+                    android:onClick="adminProfile"
+                    app:cardCornerRadius="10dp"
+                    android:id="@+id/cardViewAdminProfile">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -166,7 +167,7 @@
                             android:layout_weight="1"
                             android:fontFamily="sans-serif-condensed-medium"
                             android:gravity="center"
-                            android:text="Edit Profile"
+                            android:text="Admin Profile"
                             android:textColor="@color/white" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

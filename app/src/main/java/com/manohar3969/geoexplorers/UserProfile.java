@@ -3,6 +3,7 @@ package com.manohar3969.geoexplorers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,8 @@ public class UserProfile extends AppCompatActivity {
     TextView textViewUserID, textViewUserName, textViewUserEmailID;
     ArrayList<Users> usersArrayList = new ArrayList<>();
 
+    CardView cardViewAdminProfile;
+
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,22 @@ public class UserProfile extends AppCompatActivity {
         textViewUserName = findViewById(R.id.textViewUserName);
         textViewUserID = findViewById(R.id.textViewUserID);
         textViewUserEmailID = findViewById(R.id.textViewUserEmailID);
+        cardViewAdminProfile = findViewById(R.id.cardViewAdminProfile);
 
+        if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("reddymanohar396@gmail.com"))
+        {
+            cardViewAdminProfile.setVisibility(View.VISIBLE);
+        }
+        else{
+            cardViewAdminProfile.setVisibility(View.GONE);
+        }
+
+    }
+
+    public void adminProfile(View view){
+        Intent intent = new Intent(this, DestinationPlanner.class);
+        startActivity(intent);
+        finish();
     }
 
     public void createUserProfile(){
