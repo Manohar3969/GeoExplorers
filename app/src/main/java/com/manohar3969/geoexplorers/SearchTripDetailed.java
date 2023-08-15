@@ -39,6 +39,7 @@ public class SearchTripDetailed extends AppCompatActivity {
     ArrayList<Users> usersArrayList = new ArrayList<>();
 
     CardView cardViewJoinTrip, cardViewWithDrawTrip;
+    String totalTravellers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,8 @@ public class SearchTripDetailed extends AppCompatActivity {
 
         cardViewJoinTrip = findViewById(R.id.cardViewJoinTrip);
         cardViewWithDrawTrip = findViewById(R.id.cardViewWithdrawTrip);
-
-        getDistanceOfDestination();
+        getTravellersDetails();
+        //getDistanceOfDestination();
         getUserDetails();
         checkTripRegistration();
 
@@ -99,7 +100,7 @@ public class SearchTripDetailed extends AppCompatActivity {
         textViewTripStartDate.setText(TripStartDate);
         textViewTripEndDate.setText(TripEndDate);
         textViewTripDistance.setText(Math.round(distance)+" Kms");
-        textViewTripTotalTravellers.setText(TripTotalTravellers);
+        textViewTripTotalTravellers.setText(totalTravellers);
     }
 
     public double[] getDistance(String location){
@@ -211,6 +212,26 @@ public class SearchTripDetailed extends AppCompatActivity {
         });
     }
 
+    public void getTravellersDetails(){
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("GroupTripRoadMap");
+        Query query = reference.child("RoadMap"+TripRoadMapID).child("Travellers").orderByChild("UserEmailID").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                totalTravellers = String.valueOf(snapshot.getChildrenCount());
+                getDistanceOfDestination();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     public void joinTrip(View view){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("GroupTripRoadMap");
@@ -268,6 +289,7 @@ public class SearchTripDetailed extends AppCompatActivity {
 
 
     public void checkTripRegistration(){
+        getTravellersDetails();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("GroupTripRoadMap");
         Query query = reference.child("RoadMap"+TripRoadMapID).child("Travellers").orderByChild("UserEmailID").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
